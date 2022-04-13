@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './01-base/09-列表渲染'
+import App from './01-base/12-賣座選項卡'
 
 ReactDOM.render(
   // <React.StrictMode>
