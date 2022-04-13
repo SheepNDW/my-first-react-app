@@ -5,3 +5,7 @@
 #myApp {
   background: aquamarine;
 }
+
+.hidden {
+  display: none;
+}
