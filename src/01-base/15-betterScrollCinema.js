@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './css/02-maizuo.css'
+import BScroll from 'better-scroll'
 
 export default class Cinema extends Component {
   constructor() {
@@ -24,6 +26,8 @@ export default class Cinema extends Component {
         cinemaList: res.data.data.cinemas,
         bakCinemaList: res.data.data.cinemas
       })
+
+      new BScroll('.wrapper')
     })
   }
 
@@ -33,12 +37,19 @@ export default class Cinema extends Component {
     return (
       <div>
         <input type="text" onInput={this.handleInput} />
-        {this.state.cinemaList.map((item) => (
-          <dl key={item.cinemaId}>
-            <dt>{item.name}</dt>
-            <dd>{item.address}</dd>
-          </dl>
-        ))}
+        <div
+          className="wrapper"
+          style={{ height: '500px', background: 'orange', overflow: 'hidden' }}
+        >
+          <div className="content">
+            {this.state.cinemaList.map((item) => (
+              <dl key={item.cinemaId}>
+                <dt>{item.name}</dt>
+                <dd>{item.address}</dd>
+              </dl>
+            ))}
+          </div>
+        </div>
       </div>
     )
   }
@@ -57,11 +68,3 @@ export default class Cinema extends Component {
     })
   }
 }
-
-/*
-  filter
-*/
-// const arr = ['aaa', 'abc', 'bcc']
-
-// const newArr = arr.filter((item) => item.includes('a'))
-// console.log(newArr)
