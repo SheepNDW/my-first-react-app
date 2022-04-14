@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './01-base/15-betterScrollCinema'
+import App from './01-base/18-狀態vsProps'
 
 ReactDOM.render(
   // <React.StrictMode>
