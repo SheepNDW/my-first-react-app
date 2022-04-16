@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advanced/15-生命週期-更新階段2'
+import App from './02-advanced/19-生命週期-銷毀'
 
 ReactDOM.render(
   // <React.StrictMode>
