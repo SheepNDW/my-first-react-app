@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advanced/27-Swiper-組件'
+import App from './03-hooks/06-useEffect3'
 
 ReactDOM.render(
   // <React.StrictMode>
