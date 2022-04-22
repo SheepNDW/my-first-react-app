@@ -1,0 +1,8 @@
+.myActive {
+  border-bottom: 1px solid rgb(216, 55, 82);
+  color: rgb(216, 55, 82);
+}
+
+.films ul li {
+  list-style: none;
+}
