@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import getCinemaListAction from '../redux/actionCreator/getCinemaListAction'
 import store from '../redux/store'
 
-export default function Cinemas(props) {
-  const [cityName] = useState(store.getState().CityReducer.cityName)
-
+export default function Search() {
   const [cinemaList, setCinemaList] = useState(store.getState().CinemaListReducer.list)
 
   useEffect(() => {
@@ -18,7 +16,7 @@ export default function Cinemas(props) {
 
     // 訂閱
     const unsubscribe = store.subscribe(() => {
-      console.log('cinema 中訂閱', store.getState().CinemaListReducer.list)
+      console.log('search 中訂閱', store.getState().CinemaListReducer.list)
       setCinemaList(store.getState().CinemaListReducer.list)
     })
 
@@ -28,25 +26,27 @@ export default function Cinemas(props) {
     }
   }, [])
 
+  const [myText, setMyText] = useState('')
+  const getCinemaList = useMemo(
+    () =>
+      cinemaList.filter(
+        (item) =>
+          item.name.toUpperCase().includes(myText.toUpperCase()) ||
+          item.address.toUpperCase().includes(myText.toUpperCase())
+      ),
+    [cinemaList, myText]
+  )
+
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div
-          onClick={() => {
-            props.history.push(`/city`)
-          }}
-        >
-          {cityName}
-        </div>
-        <div
-          onClick={() => {
-            props.history.push(`/cinemas/search`)
-          }}
-        >
-          搜尋
-        </div>
-      </div>
-      {cinemaList.map((item) => (
+      <input
+        type="text"
+        value={myText}
+        onChange={(evt) => {
+          setMyText(evt.target.value)
+        }}
+      />
+      {getCinemaList.map((item) => (
         <dl key={item.cinemaId} style={{ padding: '10px' }}>
           <dt>{item.name}</dt>
           <dd style={{ fontSize: '12px', color: 'gray' }}>{item.address}</dd>

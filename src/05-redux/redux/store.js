@@ -1,16 +1,22 @@
 // #1 引入 redux
 // #2 createStore (reducer)
 
-import { combineReducers, createStore } from 'redux'
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux'
 import CityReducer from './reducers/CityReducer'
 import TabbarReducer from './reducers/TabbarReducer'
+import CinemaListReducer from './reducers/CinemaListReducer'
+import reduxThunk from 'redux-thunk'
+import reduxPromise from 'redux-promise'
 
 const reducer = combineReducers({
   CityReducer,
-  TabbarReducer
+  TabbarReducer,
+  CinemaListReducer
 })
 
-const store = createStore(reducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(reduxThunk, reduxPromise)))
 
 /*
   store.dispatch
